@@ -1,7 +1,7 @@
 ---
 
 - name: Create VM
-  local_action: shell ssh "{{ lxc_hypervisor }}" 'pct create "{{ lxc_id }}" "{{ lxc_template }}"  -hostname "{{ lxc_hostname }}" -memory "{{ lxc_memory }}" -swap "{{ lxc_swap }}" -nameserver "{{ lxc_nameserver}}" -rootfs "{{ lxc_storage}}":"{{ lxc_disk }}" -net0 name=eth0,ip="{{ lxc_net_ip }}"/"{{ lxc_net_netmask }}",gw="{{ lxc_net_gw }}",bridge="{{ lxc_net_bridge }}"'
+  local_action: shell ssh "{{ lxc_hypervisor }}" 'pct create "{{ lxc_id }}" "{{ lxc_template }}"  -hostname "{{ lxc_hostname }}" -memory "{{ lxc_memory }}" -swap "{{ lxc_swap }}" -nameserver "{{ lxc_nameserver}}" -rootfs "{{ lxc_storage}}":"{{ lxc_disk }}" -net0 name=eth0,ip="{{ lxc_net_ip }}"/"{{ lxc_net_netmask }}",gw="{{ lxc_net_gw }}",bridge="{{ lxc_net_bridge }}",tag="{{vlan_tag}}"'
 
 - name: Start VM
   local_action: shell ssh "{{ lxc_hypervisor }}" 'pct start "{{ lxc_id }}"'
